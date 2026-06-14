@@ -1,10 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { QuincyChat } from "@/components/QuincyChat";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "your name ~ personal site" },
-      { name: "description", content: "personal site — what i build, write, and work on." },
+      { title: "quincy omoruyi ~ personal site" },
+      { name: "description", content: "quincy omoruyi (quinex) — automation engineer & jr web pentester. python · n8n · offensive security." },
     ],
   }),
   component: Index,
@@ -19,6 +20,8 @@ function Section({ label, children }: { label: string; children: React.ReactNode
   );
 }
 
+const GH = "https://github.com/quincyomoruyi6-lang";
+
 function Index() {
   return (
     <main className="min-h-screen px-6 py-16 md:py-24">
@@ -26,101 +29,122 @@ function Index() {
         {/* Header */}
         <header className="flex items-start justify-between gap-6">
           <div>
-            <h1 className="italic text-2xl">your name ~ <span className="not-italic">तपाईंको नाम</span></h1>
+            <h1 className="italic text-2xl">quincy omoruyi ~ <span className="not-italic">quinex</span></h1>
             <div className="mt-3">
-              <span className="tag">product, ai, web, design, writing</span>
+              <span className="tag">automation, web pentesting, python, n8n, linux</span>
             </div>
             <p className="mt-4 italic">
-              i build <u>fast</u>
+              i build &amp; <u>break</u> systems
             </p>
-            <p className="mono mt-2 text-muted-foreground">@your_handle</p>
+            <p className="mono mt-2 text-muted-foreground">@quinex_amd</p>
           </div>
           <div className="text-right shrink-0">
-            <p className="italic">ಬೆಂಗಳೂರು</p>
-            <p className="text-muted-foreground text-sm">Bangalore, India</p>
+            <p className="italic">remote</p>
+            <p className="text-muted-foreground text-sm">working worldwide</p>
           </div>
         </header>
 
         {/* Current */}
         <Section label="current">
           <p>
-            ai engineer at{" "}
-            <a href="#" className="italic">twospoon.ai</a>, building intelligent systems that are
-            both scalable and fast. research aptitude with 4 best paper awards and 30+ citations on{" "}
-            <a href="#">google scholar</a>. bachelors' gold medalist. masters student @ IIT Patna
-            and IIIT Ranchi.
+            junior web pentester &amp; automation engineer. i build automation tools with{" "}
+            <a href="https://www.python.org" target="_blank" rel="noreferrer" className="italic">python</a> and{" "}
+            <a href="https://n8n.io" target="_blank" rel="noreferrer" className="italic">n8n</a>, and i break
+            web apps to understand their weak spots. training on{" "}
+            <a href="https://www.hackthebox.com" target="_blank" rel="noreferrer">hack the box</a> &amp;{" "}
+            <a href="https://portswigger.net/web-security" target="_blank" rel="noreferrer">portswigger academy</a>.
           </p>
           <p>
-            enjoy coding, content creation, writing, superbikes, and reading ancient greek
-            philosophy &amp; history.
+            enjoy linux, bash, burp suite, wireshark, http internals, and shipping small focused tools.
           </p>
-          <p>i can build <em>anything</em>.</p>
+          <p>i can <em>break</em> anything. then automate fixing it.</p>
         </Section>
 
-        {/* Previous */}
-        <Section label="previous">
+        {/* What I do */}
+        <Section label="systems">
           {[
-            { name: "leapx.ai", role: "ai engineer intern", loc: "gurgaon, india" },
-            { name: "composio.dev", role: "software engineering (python)", loc: "bangalore, india" },
-            { name: "successscholar.in", role: "product owner/developer", loc: "kolkata, india" },
+            { name: "recon → report pipeline", role: "n8n · python · slack", loc: "automated recon" },
+            { name: "lead-gen bot for agents", role: "n8n · whatsapp api · sheets", loc: "real-estate" },
+            { name: "uptime & header monitor", role: "python · cron · email", loc: "client sites" },
+            { name: "pentest notes engine", role: "markdown · bash · github", loc: "engagement writeups" },
           ].map((j) => (
             <p key={j.name}>
-              <a href="#" className="italic">{j.name}</a> ~ {j.role} [{j.loc}]
+              <span className="italic">{j.name}</span> ~ {j.role} [{j.loc}]
             </p>
           ))}
         </Section>
 
-        {/* Writings */}
-        <Section label="writings">
+        {/* Journey */}
+        <Section label="journey">
           {[
-            { date: "june 8, 2026", title: "the \"wiki layer\": building karpathy's llm knowledge base" },
-            { date: "may 25, 2026", title: "who is sagar_builds? the story behind the brand" },
-            { date: "april 5, 2026", title: "fix ec2 freezing during next.js build" },
+            { date: "2020 — 2022", title: "the foundation — html, css, and curiosity about how the web actually works" },
+            { date: "2022 — 2024", title: "the pivot to offense — networking, linux, bash, wireshark, tryhackme & hack the box" },
+            { date: "2024 — now", title: "the build phase — python + n8n + security mindset, shipping for clients" },
           ].map((w) => (
             <div key={w.title} className="grid grid-cols-[8rem_1fr] gap-4">
               <span className="mono text-muted-foreground pt-1">{w.date}</span>
-              <a href="#" className="italic">{w.title}</a>
+              <span className="italic">{w.title}</span>
             </div>
           ))}
-          <p className="pt-2"><a href="#">read all writings →</a></p>
         </Section>
 
         {/* Builds */}
         <Section label="builds">
           {[
             {
-              date: "may 18, 2026",
-              title: "ai engineer's personal desk",
-              blurb: "a 3d gaussian splat scan of my personal workspace — every item i use as an ai engineer, in one explorable scene.",
+              title: "a-handy-ip-scanner",
+              href: `${GH}/A-Handy-IP-Scanner`,
+              label: "recon · python",
+              blurb: "cross-platform python cli for network recon — icmp sweeps & host discovery in one command.",
             },
             {
-              date: "march 2, 2026",
-              title: "tiny rag, big context",
-              blurb: "a tiny retrieval pipeline that punches above its weight on real long-document QA.",
+              title: "port-scanner-tool",
+              href: `${GH}/port-scanner-tool`,
+              label: "recon · python",
+              blurb: "lean python port scanner. drop it in a recon pipeline and forget about it.",
+            },
+            {
+              title: "password-checker",
+              href: `${GH}/password-checker`,
+              label: "security · python",
+              blurb: "rates passwords against real entropy & policy rules. great teaching tool.",
+            },
+            {
+              title: "html-notes-by-cyberquice",
+              href: `${GH}/Html-notes-by-cyberquice`,
+              label: "notes · html",
+              blurb: "a friendly html primer for aspiring front-end devs — small, clear, opinionated.",
             },
           ].map((b) => (
             <div key={b.title} className="border-t border-rule pt-4">
               <div className="flex items-baseline justify-between gap-4">
-                <a href="#" className="italic">{b.title}</a>
-                <span className="mono text-muted-foreground">{b.date}</span>
+                <a href={b.href} target="_blank" rel="noreferrer" className="italic">{b.title}</a>
+                <span className="mono text-muted-foreground">{b.label}</span>
               </div>
               <p className="mt-2 text-muted-foreground">{b.blurb}</p>
             </div>
           ))}
+          <p className="pt-2"><a href={GH} target="_blank" rel="noreferrer">view all on github →</a></p>
         </Section>
 
         {/* Contact */}
         <Section label="elsewhere">
           <p>
-            <a href="#">twitter</a> · <a href="#">github</a> · <a href="#">linkedin</a> ·{" "}
-            <a href="mailto:hello@example.com">email</a>
+            <a href="https://x.com/quinex_amd" target="_blank" rel="noreferrer">twitter</a> ·{" "}
+            <a href={GH} target="_blank" rel="noreferrer">github</a> ·{" "}
+            <a href="https://www.linkedin.com/in/quincy-omoruyi-osazoba-905292379" target="_blank" rel="noreferrer">linkedin</a> ·{" "}
+            <a href="https://www.instagram.com/quinex_amd/" target="_blank" rel="noreferrer">instagram</a> ·{" "}
+            <a href="https://linktr.ee/Quinceinternational" target="_blank" rel="noreferrer">linktree</a> ·{" "}
+            <a href="mailto:quincyomoruyi6@gmail.com">email</a>
           </p>
         </Section>
 
         <footer className="mt-24 mono text-muted-foreground">
-          © 2026 — built with care.
+          © {new Date().getFullYear()} — quincy omoruyi · quinex
         </footer>
       </div>
+
+      <QuincyChat />
     </main>
   );
 }
