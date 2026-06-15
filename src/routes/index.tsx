@@ -33,6 +33,7 @@ const socials = [
   { label: "instagram", href: "https://www.instagram.com/quinex_amd/", Icon: Instagram },
   { label: "linktree", href: "https://linktr.ee/Quinceinternational", Icon: Link2 },
   { label: "email", href: "mailto:quincyomoruyi6@gmail.com", Icon: Mail },
+  { label: "+234 706 472 4676", href: "tel:+2347064724676", Icon: Phone },
 ];
 
 function Index() {
