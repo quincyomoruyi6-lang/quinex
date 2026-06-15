@@ -43,7 +43,7 @@ function Index() {
         {/* Header */}
         <header className="flex items-start justify-between gap-6">
           <div>
-            <h1 className="italic text-2xl">quincy omoruyi ~ <span className="not-italic">quinex</span></h1>
+            <h1 className="italic text-2xl">quincy omoruyi ~ <span className="not-italic">QuineX</span></h1>
             <div className="mt-3">
               <span className="tag">automation, web pentesting, python, n8n, linux</span>
             </div>
