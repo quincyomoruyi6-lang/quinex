@@ -162,7 +162,7 @@ export function QuincyChat() {
                 >
                   <Search size={11} /> deep search
                 </button>
-                <span className="mono ml-auto text-[10px] text-white/30">powered by lovable ai</span>
+                <span className="mono ml-auto text-[10px] text-white/30">powered by QuineX</span>
               </div>
             </div>
           </div>
