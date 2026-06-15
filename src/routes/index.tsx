@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { QuincyChat } from "@/components/QuincyChat";
 import { HoverPreview, Favicon } from "@/components/HoverPreview";
-import { Github, Twitter, Linkedin, Instagram, Mail, Link2 } from "lucide-react";
+import { Github, Twitter, Linkedin, Instagram, Mail, Link2, Phone } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
