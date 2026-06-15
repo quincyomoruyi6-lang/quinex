@@ -127,10 +127,9 @@ function Index() {
             {socials.map(({ label, href, Icon }) => {
               const external = /^https?:\/\//.test(href);
               const inner = (
-                <span className="group inline-flex items-center gap-2 rounded-full border border-rule px-3 py-1.5 transition hover:border-white/40 hover:bg-white/[0.04]">
-                  {external ? <Favicon href={href} size={14} /> : <Mail size={14} className="opacity-70" />}
-                  <Icon size={14} className="opacity-80 group-hover:opacity-100" />
-                  <span className="mono text-[11px] lowercase tracking-wider text-muted-foreground group-hover:text-foreground">
+                <span className="group inline-flex items-center gap-2 rounded-full border border-rule px-3 py-1.5 transition-all duration-300 ease-out hover:border-white/50 hover:bg-white/[0.05] hover:-translate-y-0.5">
+                  <Icon size={14} className="text-white/70 transition-colors duration-300 group-hover:text-white" strokeWidth={1.75} />
+                  <span className="mono text-[11px] lowercase tracking-wider text-muted-foreground transition-colors duration-300 group-hover:text-foreground">
                     {label}
                   </span>
                 </span>
