@@ -87,8 +87,12 @@ export function QuincyChat() {
         </div>
       )}
 
-      {/* bottom-centered pill input — sagartamang style */}
-      <div className="fixed inset-x-0 bottom-6 z-50 px-4">
+      {/* centered animated pill input — drops to bottom when chatting */}
+      <div
+        className={`fixed inset-x-0 z-50 px-4 transition-all duration-700 ease-out ${
+          open ? "bottom-6" : "top-1/2 -translate-y-1/2"
+        }`}
+      >
         <div className="mx-auto w-full max-w-2xl">
           {/* animated glow border */}
           <div className="relative">
@@ -158,7 +162,7 @@ export function QuincyChat() {
                 >
                   <Search size={11} /> deep search
                 </button>
-                <span className="mono ml-auto text-[10px] text-white/30">powered by lovable ai</span>
+                <span className="mono ml-auto text-[10px] text-white/30">powered by QuineX</span>
               </div>
             </div>
           </div>

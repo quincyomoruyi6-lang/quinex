@@ -20,7 +20,7 @@ export function Favicon({ href, size = 16 }: { href: string; size?: number }) {
       alt=""
       width={size}
       height={size}
-      className="inline-block align-[-3px] mr-1.5 rounded-[3px]"
+      className="inline-block align-[-3px] mr-1.5 rounded-[3px] grayscale contrast-125 opacity-80 transition duration-300 hover:opacity-100 hover:grayscale-0"
       loading="lazy"
     />
   );

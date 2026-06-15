@@ -1,14 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { QuincyChat } from "@/components/QuincyChat";
-import { HoverPreview, Favicon } from "@/components/HoverPreview";
-import { Github, Twitter, Linkedin, Instagram, Mail, Link2 } from "lucide-react";
+import { HoverPreview } from "@/components/HoverPreview";
+import { Github, Twitter, Linkedin, Instagram, Mail, Link2, Phone } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "quincy omoruyi ~ quinex" },
-      { name: "description", content: "quincy omoruyi (quinex) — automation engineer & jr web pentester. python · n8n · offensive security." },
-      { property: "og:title", content: "quincy omoruyi ~ quinex" },
+      { title: "quincy omoruyi ~ QuineX" },
+      { name: "description", content: "quincy omoruyi (QuineX) — automation engineer & jr web pentester. python · n8n · offensive security." },
+      { property: "og:title", content: "quincy omoruyi ~ QuineX" },
       { property: "og:url", content: "/" },
     ],
   }),
@@ -33,6 +33,7 @@ const socials = [
   { label: "instagram", href: "https://www.instagram.com/quinex_amd/", Icon: Instagram },
   { label: "linktree", href: "https://linktr.ee/Quinceinternational", Icon: Link2 },
   { label: "email", href: "mailto:quincyomoruyi6@gmail.com", Icon: Mail },
+  { label: "+234 706 472 4676", href: "tel:+2347064724676", Icon: Phone },
 ];
 
 function Index() {
@@ -42,7 +43,7 @@ function Index() {
         {/* Header */}
         <header className="flex items-start justify-between gap-6">
           <div>
-            <h1 className="italic text-2xl">quincy omoruyi ~ <span className="not-italic">quinex</span></h1>
+            <h1 className="italic text-2xl">quincy omoruyi ~ <span className="not-italic">QuineX</span></h1>
             <div className="mt-3">
               <span className="tag">automation, web pentesting, python, n8n, linux</span>
             </div>
@@ -126,10 +127,9 @@ function Index() {
             {socials.map(({ label, href, Icon }) => {
               const external = /^https?:\/\//.test(href);
               const inner = (
-                <span className="group inline-flex items-center gap-2 rounded-full border border-rule px-3 py-1.5 transition hover:border-white/40 hover:bg-white/[0.04]">
-                  {external ? <Favicon href={href} size={14} /> : <Mail size={14} className="opacity-70" />}
-                  <Icon size={14} className="opacity-80 group-hover:opacity-100" />
-                  <span className="mono text-[11px] lowercase tracking-wider text-muted-foreground group-hover:text-foreground">
+                <span className="group inline-flex items-center gap-2 rounded-full border border-rule px-3 py-1.5 transition-all duration-300 ease-out hover:border-white/50 hover:bg-white/[0.05] hover:-translate-y-0.5">
+                  <Icon size={14} className="text-white/70 transition-colors duration-300 group-hover:text-white" strokeWidth={1.75} />
+                  <span className="mono text-[11px] lowercase tracking-wider text-muted-foreground transition-colors duration-300 group-hover:text-foreground">
                     {label}
                   </span>
                 </span>
@@ -146,7 +146,7 @@ function Index() {
         </Section>
 
         <footer className="mt-24 mono text-muted-foreground">
-          © {new Date().getFullYear()} — quincy omoruyi · quinex
+          © {new Date().getFullYear()} — quincy omoruyi · QuineX
         </footer>
       </div>
 
