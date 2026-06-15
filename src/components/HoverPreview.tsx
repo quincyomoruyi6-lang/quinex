@@ -28,7 +28,6 @@ export function Favicon({ href, size = 16 }: { href: string; size?: number }) {
 
 export function HoverPreview({ href, children, className, icon = true, previewLabel }: Props) {
   const [hover, setHover] = useState(false);
-  const [pos, setPos] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
   const ref = useRef<HTMLAnchorElement>(null);
 
   const isExternal = /^https?:\/\//.test(href);
@@ -38,11 +37,7 @@ export function HoverPreview({ href, children, className, icon = true, previewLa
 
   return (
     <span
-      className="relative inline"
-      onMouseMove={(e) => {
-        const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
-        setPos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
-      }}
+      className="relative inline-block"
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
     >
@@ -58,8 +53,7 @@ export function HoverPreview({ href, children, className, icon = true, previewLa
       </a>
       {hover && shot && (
         <span
-          className="pointer-events-none fixed z-[60] animate-fade-in"
-          style={{ left: 0, top: 0, transform: `translate(${pos.x + (ref.current?.getBoundingClientRect().left ?? 0) + 16}px, ${pos.y + (ref.current?.getBoundingClientRect().top ?? 0) - 180}px)` }}
+          className="pointer-events-none absolute left-1/2 bottom-full z-[60] mb-3 -translate-x-1/2 animate-fade-in"
         >
           <span className="block w-[280px] overflow-hidden rounded-lg border border-white/15 bg-[#0a0a0a] shadow-[0_20px_60px_-10px_rgba(0,0,0,.9)]">
             <span className="block aspect-[16/10] w-full bg-white/5">
@@ -76,3 +70,4 @@ export function HoverPreview({ href, children, className, icon = true, previewLa
     </span>
   );
 }
+
