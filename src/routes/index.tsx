@@ -147,7 +147,7 @@ function Index() {
         </Section>
 
         <footer className="mt-24 mono text-muted-foreground">
-          © {new Date().getFullYear()} — quincy omoruyi · quinex
+          © {new Date().getFullYear()} — quincy omoruyi · QuineX
         </footer>
       </div>
 
