@@ -1,31 +1,33 @@
 import { useEffect, useRef, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
+import { Paperclip, Mic, ArrowUp, Sparkles, Search, X } from "lucide-react";
 import { askQuinceBot } from "@/lib/chat.functions";
 
 type Msg = { role: "user" | "assistant"; content: string };
 
-const INTRO: Msg = {
-  role: "assistant",
-  content:
-    "hey 👋 i'm QuineBot. ask me anything about Quincy — his projects, stack, pentesting work, or how to hire him.",
-};
-
 export function QuincyChat() {
-  const [open, setOpen] = useState(false);
-  const [msgs, setMsgs] = useState<Msg[]>([INTRO]);
+  const [msgs, setMsgs] = useState<Msg[]>([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
+  const [think, setThink] = useState(false);
+  const [deep, setDeep] = useState(false);
   const ask = useServerFn(askQuinceBot);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLTextAreaElement>(null);
+
+  const open = msgs.length > 0;
 
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "smooth" });
-  }, [msgs, open]);
+  }, [msgs]);
 
   async function send() {
     const q = input.trim();
     if (!q || loading) return;
-    const next = [...msgs, { role: "user", content: q } as Msg];
+    let prefix = "";
+    if (think) prefix += "[think step by step] ";
+    if (deep) prefix += "[deep search across what you know about Quincy] ";
+    const next = [...msgs, { role: "user", content: prefix + q } as Msg];
     setMsgs(next);
     setInput("");
     setLoading(true);
@@ -33,8 +35,8 @@ export function QuincyChat() {
       const { reply } = await ask({ data: { messages: next } });
       setMsgs((m) => [...m, { role: "assistant", content: reply }]);
     } catch (e: unknown) {
-      const msg = e instanceof Error ? e.message : "Something broke. Try again.";
-      setMsgs((m) => [...m, { role: "assistant", content: `⚠️ ${msg}` }]);
+      const m = e instanceof Error ? e.message : "Something broke.";
+      setMsgs((mm) => [...mm, { role: "assistant", content: `⚠️ ${m}` }]);
     } finally {
       setLoading(false);
     }
@@ -42,75 +44,126 @@ export function QuincyChat() {
 
   return (
     <>
-      <button
-        type="button"
-        onClick={() => setOpen((o) => !o)}
-        aria-label="Ask QuineBot"
-        className="fixed bottom-6 right-6 z-50 inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-medium text-black shadow-[0_0_30px_rgba(255,255,255,.18)] ring-1 ring-white/30 transition hover:scale-105"
-      >
-        <span className="relative flex h-2 w-2">
-          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-black/40 opacity-75" />
-          <span className="relative inline-flex h-2 w-2 rounded-full bg-black" />
-        </span>
-        {open ? "close" : "ask quinebot"}
-      </button>
-
+      {/* expanded transcript panel */}
       {open && (
-        <div className="fixed bottom-24 right-6 z-50 flex h-[520px] w-[min(380px,calc(100vw-2rem))] flex-col overflow-hidden rounded-2xl border border-white/15 bg-[#0a0a0a]/95 shadow-[0_30px_80px_-20px_rgba(0,0,0,.9)] backdrop-blur-xl">
-          <div className="flex items-center gap-3 border-b border-white/10 px-4 py-3">
-            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-white/10 ring-1 ring-white/20 font-mono text-xs text-white">
-              QB
-            </div>
-            <div>
-              <p className="text-sm font-semibold text-white">QuineBot</p>
-              <p className="mono text-[10px] uppercase tracking-[0.18em] text-white/60">
-                online · ai assistant
-              </p>
-            </div>
-          </div>
-          <div ref={scrollRef} className="flex-1 space-y-3 overflow-y-auto p-4 text-sm">
-            {msgs.map((m, i) => (
-              <div
-                key={i}
-                className={`max-w-[85%] whitespace-pre-wrap rounded-2xl px-3.5 py-2.5 leading-relaxed ${
-                  m.role === "user"
-                    ? "ml-auto bg-white text-black"
-                    : "border border-white/10 bg-white/[0.04] text-neutral-200"
-                }`}
-              >
-                {m.content}
+        <div className="fixed inset-x-0 bottom-32 z-40 px-4 pointer-events-none">
+          <div className="mx-auto w-full max-w-2xl pointer-events-auto">
+            <div
+              ref={scrollRef}
+              className="max-h-[60vh] space-y-3 overflow-y-auto rounded-2xl border border-white/10 bg-[#0a0a0a]/85 p-4 shadow-[0_30px_80px_-20px_rgba(0,0,0,.9)] backdrop-blur-xl animate-fade-in"
+            >
+              <div className="flex items-center justify-between pb-2">
+                <p className="mono text-[10px] uppercase tracking-[0.2em] text-white/50">
+                  QuineBot · live
+                </p>
+                <button
+                  onClick={() => setMsgs([])}
+                  className="rounded-full p-1 text-white/40 hover:bg-white/5 hover:text-white"
+                  aria-label="Clear"
+                >
+                  <X size={14} />
+                </button>
               </div>
-            ))}
-            {loading && (
-              <div className="max-w-[85%] rounded-2xl border border-white/10 bg-white/[0.04] px-3.5 py-2.5 mono text-xs text-white/70">
-                <span className="inline-block animate-pulse">thinking…</span>
-              </div>
-            )}
-          </div>
-          <div className="border-t border-white/10 bg-black/40 p-3">
-            <p className="mb-2 text-center text-[10px] text-white/40">
-              AI may be wrong · powered by Lovable AI
-            </p>
-            <div className="flex gap-2">
-              <input
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                onKeyDown={(e) => e.key === "Enter" && send()}
-                placeholder="ask about quincy…"
-                className="flex-1 rounded-full border border-white/15 bg-white/[0.04] px-4 py-2 text-sm text-white placeholder:text-white/40 focus:border-white/40 focus:outline-none"
-              />
-              <button
-                onClick={send}
-                disabled={loading}
-                className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white text-black transition hover:bg-white/80 disabled:opacity-50"
-                aria-label="Send"
-              >
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-              </button>
+              {msgs.map((m, i) => (
+                <div
+                  key={i}
+                  className={`max-w-[88%] whitespace-pre-wrap rounded-2xl px-4 py-2.5 leading-relaxed ${
+                    m.role === "user"
+                      ? "ml-auto bg-white text-black"
+                      : "border border-white/10 bg-white/[0.03] text-neutral-200"
+                  }`}
+                >
+                  {m.content}
+                </div>
+              ))}
+              {loading && (
+                <div className="flex items-center gap-2 px-1 py-2">
+                  <span className="h-2 w-2 animate-pulse rounded-full bg-white/60" />
+                  <span className="mono text-[11px] text-white/60">thinking…</span>
+                </div>
+              )}
             </div>
           </div>
         </div>
       )}
+
+      {/* bottom-centered pill input — sagartamang style */}
+      <div className="fixed inset-x-0 bottom-6 z-50 px-4">
+        <div className="mx-auto w-full max-w-2xl">
+          {/* animated glow border */}
+          <div className="relative">
+            <div className="pointer-events-none absolute -inset-[1.5px] rounded-[28px] bg-[conic-gradient(from_0deg,transparent,rgba(255,255,255,.35),transparent_30%)] opacity-70 animate-[spin_6s_linear_infinite]" />
+            <div className="relative rounded-[26px] border border-white/10 bg-[#0a0a0a]/95 px-3 py-2 shadow-[0_20px_60px_-20px_rgba(0,0,0,.9)] backdrop-blur-xl">
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-white/60 transition hover:bg-white/5 hover:text-white"
+                  aria-label="Attach"
+                >
+                  <Paperclip size={16} />
+                </button>
+                <textarea
+                  ref={inputRef}
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" && !e.shiftKey) {
+                      e.preventDefault();
+                      send();
+                    }
+                  }}
+                  rows={1}
+                  placeholder="ask me anything about quincy"
+                  className="flex-1 resize-none bg-transparent py-2 text-[15px] text-white placeholder:text-white/40 focus:outline-none"
+                  style={{ fontFamily: "var(--font-serif)" }}
+                />
+                <button
+                  type="button"
+                  className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-white/60 transition hover:bg-white/5 hover:text-white"
+                  aria-label="Voice"
+                >
+                  <Mic size={16} />
+                </button>
+                <button
+                  type="button"
+                  onClick={send}
+                  disabled={loading || !input.trim()}
+                  className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white text-black transition hover:scale-105 disabled:opacity-40 disabled:hover:scale-100"
+                  aria-label="Send"
+                >
+                  <ArrowUp size={16} strokeWidth={2.5} />
+                </button>
+              </div>
+              {/* tool toggles */}
+              <div className="flex items-center gap-2 px-1 pb-1 pt-1">
+                <button
+                  type="button"
+                  onClick={() => setThink((v) => !v)}
+                  className={`mono inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[10px] uppercase tracking-[0.14em] transition ${
+                    think
+                      ? "border-white/40 bg-white/10 text-white"
+                      : "border-white/10 text-white/55 hover:text-white"
+                  }`}
+                >
+                  <Sparkles size={11} /> think
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setDeep((v) => !v)}
+                  className={`mono inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[10px] uppercase tracking-[0.14em] transition ${
+                    deep
+                      ? "border-white/40 bg-white/10 text-white"
+                      : "border-white/10 text-white/55 hover:text-white"
+                  }`}
+                >
+                  <Search size={11} /> deep search
+                </button>
+                <span className="mono ml-auto text-[10px] text-white/30">powered by lovable ai</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </>
   );
 }
