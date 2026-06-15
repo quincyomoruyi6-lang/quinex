@@ -6,9 +6,9 @@ import { Github, Twitter, Linkedin, Instagram, Mail, Link2 } from "lucide-react"
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "quincy omoruyi ~ quinex" },
-      { name: "description", content: "quincy omoruyi (quinex) — automation engineer & jr web pentester. python · n8n · offensive security." },
-      { property: "og:title", content: "quincy omoruyi ~ quinex" },
+      { title: "quincy omoruyi ~ QuineX" },
+      { name: "description", content: "quincy omoruyi (QuineX) — automation engineer & jr web pentester. python · n8n · offensive security." },
+      { property: "og:title", content: "quincy omoruyi ~ QuineX" },
       { property: "og:url", content: "/" },
     ],
   }),
