@@ -39,22 +39,22 @@ const socials = [
 function Index() {
   return (
     <main className="min-h-screen px-5 py-12 pb-40 md:py-16">
-      <div className="mx-auto w-full max-w-xl">
+      <div className="mx-auto w-full max-w-2xl">
         {/* Header */}
         <header className="flex items-start justify-between gap-6">
-          <div>
-            <h1 className="italic text-xl">quincy omoruyi ~ <span className="not-italic">QuineX</span></h1>
-            <div className="mt-2">
-              <span className="tag">automation, web pentesting, python, n8n, linux</span>
+          <div className="flex flex-col gap-1.5">
+            <h1 className="font-semibold italic">quincy omoruyi ~ <span className="not-italic font-normal text-xs align-bottom">QuineX</span></h1>
+            <div>
+              <span className="tag">automation,web,pentest,python,n8n,linux</span>
             </div>
-            <p className="mt-3 italic text-[15px]">
-              i build &amp; <u>break</u> systems
+            <p className="italic">
+              i <span className="not-italic font-medium">build</span> &amp; <span className="underline">break</span>
             </p>
-            <p className="mono mt-1.5 text-muted-foreground">@quinex_amd</p>
+            <p className="mono text-muted-foreground">@quinex_amd</p>
           </div>
           <div className="text-right shrink-0">
-            <p className="italic text-[15px]">remote</p>
-            <p className="text-muted-foreground text-[13px]">working worldwide</p>
+            <p className="italic">remote</p>
+            <p className="italic text-muted-foreground">working worldwide</p>
           </div>
         </header>
 
