@@ -96,7 +96,7 @@ function Index() {
           ].map((w) => (
             <div key={w.title} className="grid grid-cols-[8rem_1fr] gap-4">
               <span className="mono text-muted-foreground pt-1">{w.date}</span>
-              <span className="italic">{w.title}</span>
+              <span>{w.title}</span>
             </div>
           ))}
         </Section>
