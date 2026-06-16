@@ -17,9 +17,9 @@ export const Route = createFileRoute("/")({
 
 function Section({ label, children }: { label: string; children: React.ReactNode }) {
   return (
-    <section className="mt-16">
+    <section className="mt-12">
       <h2 className="section-label">{label}</h2>
-      <div className="space-y-4">{children}</div>
+      <div className="space-y-3">{children}</div>
     </section>
   );
 }
