@@ -34,8 +34,8 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-serif);
-    font-size: 18px;
-    line-height: 1.55;
+    font-size: 15px;
+    line-height: 1.5;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
   }
@@ -45,13 +45,13 @@
 
 @utility mono {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   letter-spacing: 0.02em;
 }
 
 @utility tag {
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   border: 1px solid var(--color-rule);
   padding: 2px 6px;
   border-radius: 2px;
@@ -62,7 +62,7 @@
 @utility section-label {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: 1.35rem;
+  font-size: 1.1rem;
   color: var(--color-foreground);
-  margin-bottom: 1.25rem;
+  margin-bottom: 1rem;
 }

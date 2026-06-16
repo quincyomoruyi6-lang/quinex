@@ -17,9 +17,9 @@ export const Route = createFileRoute("/")({
 
 function Section({ label, children }: { label: string; children: React.ReactNode }) {
   return (
-    <section className="mt-16">
+    <section className="mt-12">
       <h2 className="section-label">{label}</h2>
-      <div className="space-y-4">{children}</div>
+      <div className="space-y-3">{children}</div>
     </section>
   );
 }
@@ -38,25 +38,26 @@ const socials = [
 
 function Index() {
   return (
-    <main className="min-h-screen px-6 py-16 pb-44 md:py-24">
-      <div className="mx-auto w-full max-w-2xl">
+    <main className="min-h-screen px-5 py-12 pb-40 md:py-16">
+      <div className="mx-auto w-full max-w-xl">
         {/* Header */}
         <header className="flex items-start justify-between gap-6">
           <div>
-            <h1 className="italic text-2xl">quincy omoruyi ~ <span className="not-italic">QuineX</span></h1>
-            <div className="mt-3">
+            <h1 className="italic text-xl">quincy omoruyi ~ <span className="not-italic">QuineX</span></h1>
+            <div className="mt-2">
               <span className="tag">automation, web pentesting, python, n8n, linux</span>
             </div>
-            <p className="mt-4 italic">
+            <p className="mt-3 italic text-[15px]">
               i build &amp; <u>break</u> systems
             </p>
-            <p className="mono mt-2 text-muted-foreground">@quinex_amd</p>
+            <p className="mono mt-1.5 text-muted-foreground">@quinex_amd</p>
           </div>
           <div className="text-right shrink-0">
-            <p className="italic">remote</p>
-            <p className="text-muted-foreground text-sm">working worldwide</p>
+            <p className="italic text-[15px]">remote</p>
+            <p className="text-muted-foreground text-[13px]">working worldwide</p>
           </div>
         </header>
+
 
         {/* Current */}
         <Section label="current">
