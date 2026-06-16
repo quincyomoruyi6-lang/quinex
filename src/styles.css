@@ -34,8 +34,8 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-serif);
-    font-size: 18px;
-    line-height: 1.55;
+    font-size: 15px;
+    line-height: 1.5;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
   }
