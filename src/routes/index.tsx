@@ -63,9 +63,9 @@ function Index() {
         <Section label="current">
           <p>
             junior web pentester &amp; automation engineer. i build automation tools with{" "}
-            <HoverPreview href="https://www.python.org" previewLabel="python.org" className="italic"><span>python</span></HoverPreview>{" "}
+            <HoverPreview href="https://www.python.org" previewLabel="python.org"><span>python</span></HoverPreview>{" "}
             and{" "}
-            <HoverPreview href="https://n8n.io" previewLabel="n8n.io" className="italic"><span>n8n</span></HoverPreview>, and i break web apps to understand their weak spots. training on{" "}
+            <HoverPreview href="https://n8n.io" previewLabel="n8n.io"><span>n8n</span></HoverPreview>, and i break web apps to understand their weak spots. training on{" "}
             <HoverPreview href="https://www.hackthebox.com" previewLabel="hack the box"><span>hack the box</span></HoverPreview>{" "}&amp;{" "}
             <HoverPreview href="https://portswigger.net/web-security" previewLabel="portswigger academy"><span>portswigger academy</span></HoverPreview>.
           </p>
