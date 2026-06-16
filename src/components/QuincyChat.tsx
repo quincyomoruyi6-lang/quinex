@@ -48,7 +48,7 @@ export function QuincyChat() {
       {open && (
         <div
           className="fixed inset-x-0 z-40 px-3 pointer-events-none sm:px-4"
-          style={{ bottom: "calc(env(safe-area-inset-bottom, 0px) + 5.25rem)" }}
+          style={{ bottom: "calc(max(0.75rem, env(safe-area-inset-bottom)) + 4.5rem)" }}
         >
           <div className="mx-auto w-full max-w-xl pointer-events-auto">
             <div
