@@ -111,7 +111,7 @@ function Index() {
           ].map((b) => (
             <div key={b.title} className="border-t border-rule pt-4">
               <div className="flex items-baseline justify-between gap-4">
-                <HoverPreview href={b.href} previewLabel={b.title} className="italic"><span>{b.title}</span></HoverPreview>
+                <HoverPreview href={b.href} previewLabel={b.title} className="font-semibold"><span>{b.title}</span></HoverPreview>
                 <span className="mono text-muted-foreground">{b.label}</span>
               </div>
               <p className="mt-2 text-muted-foreground">{b.blurb}</p>
