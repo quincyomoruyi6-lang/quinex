@@ -19,7 +19,7 @@ export function QuincyChat() {
 
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "smooth" });
-  }, [msgs]);
+  }, [msgs, loading]);
 
   async function send() {
     const q = input.trim();
@@ -44,24 +44,27 @@ export function QuincyChat() {
 
   return (
     <>
-      {/* transcript panel — sits above the input */}
+      {/* transcript panel */}
       {open && (
-        <div className="fixed inset-x-0 bottom-[calc(env(safe-area-inset-bottom,0px)+5.5rem)] z-40 px-3 pointer-events-none sm:px-4">
+        <div
+          className="fixed inset-x-0 z-40 px-3 pointer-events-none sm:px-4"
+          style={{ bottom: "calc(env(safe-area-inset-bottom, 0px) + 5.25rem)" }}
+        >
           <div className="mx-auto w-full max-w-xl pointer-events-auto">
             <div
               ref={scrollRef}
-              className="max-h-[50vh] space-y-2 overflow-y-auto rounded-2xl border border-white/10 bg-[#0a0a0a]/85 p-3 text-[13px] shadow-[0_30px_80px_-20px_rgba(0,0,0,.9)] backdrop-blur-xl animate-fade-in"
+              className="max-h-[55vh] space-y-2 overflow-y-auto rounded-2xl border border-white/10 bg-[#0a0a0a]/90 p-3 text-[13px] shadow-[0_30px_80px_-20px_rgba(0,0,0,.95)] backdrop-blur-xl animate-fade-in"
             >
-              <div className="flex items-center justify-between pb-1">
-                <p className="mono text-[10px] uppercase tracking-[0.2em] text-white/50">
-                  QuineBot · live
+              <div className="sticky top-0 -mx-3 -mt-3 mb-1 flex items-center justify-between rounded-t-2xl bg-[#0a0a0a]/95 px-3 py-2 backdrop-blur-xl border-b border-white/5">
+                <p className="mono text-[10px] uppercase tracking-[0.2em] text-white/55">
+                  quinebot · live
                 </p>
                 <button
                   onClick={() => setMsgs([])}
-                  className="rounded-full p-1 text-white/40 hover:bg-white/5 hover:text-white"
-                  aria-label="Clear"
+                  className="inline-flex items-center gap-1 rounded-full border border-white/15 px-2 py-0.5 text-[10px] text-white/70 hover:bg-white/10 hover:text-white"
+                  aria-label="Close chat"
                 >
-                  <X size={12} />
+                  <X size={11} /> close
                 </button>
               </div>
               {msgs.map((m, i) => (
@@ -77,9 +80,10 @@ export function QuincyChat() {
                 </div>
               ))}
               {loading && (
-                <div className="flex items-center gap-2 px-1 py-1.5">
-                  <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-white/60" />
-                  <span className="mono text-[10px] text-white/60">thinking…</span>
+                <div className="inline-flex items-center gap-1.5 rounded-2xl border border-white/10 bg-white/[0.03] px-3 py-2.5">
+                  <span className="h-1.5 w-1.5 rounded-full bg-white/70" style={{ animation: "typing-bounce 1.2s infinite", animationDelay: "0s" }} />
+                  <span className="h-1.5 w-1.5 rounded-full bg-white/70" style={{ animation: "typing-bounce 1.2s infinite", animationDelay: "0.15s" }} />
+                  <span className="h-1.5 w-1.5 rounded-full bg-white/70" style={{ animation: "typing-bounce 1.2s infinite", animationDelay: "0.3s" }} />
                 </div>
               )}
             </div>
@@ -87,8 +91,11 @@ export function QuincyChat() {
         </div>
       )}
 
-      {/* animated pill input — pinned to bottom on all screens */}
-      <div className="fixed inset-x-0 bottom-0 z-50 px-3 pb-[calc(env(safe-area-inset-bottom,0px)+0.75rem)] pt-2 sm:px-4 sm:pb-4">
+      {/* pill input — pinned to bottom on all screens */}
+      <div
+        className="fixed inset-x-0 z-50 px-3 pt-2 sm:px-4"
+        style={{ bottom: 0, paddingBottom: "calc(env(safe-area-inset-bottom, 0px) + 0.75rem)" }}
+      >
         <div className="mx-auto w-full max-w-xl">
           <div className="relative">
             <div className="pointer-events-none absolute -inset-[1.5px] rounded-[24px] bg-[conic-gradient(from_0deg,transparent,rgba(255,255,255,.35),transparent_30%)] opacity-70 animate-[spin_6s_linear_infinite]" />
@@ -116,6 +123,16 @@ export function QuincyChat() {
                   className="flex-1 min-w-0 resize-none bg-transparent py-1.5 text-[14px] text-white placeholder:text-white/40 focus:outline-none"
                   style={{ fontFamily: "var(--font-serif)" }}
                 />
+                {open && (
+                  <button
+                    type="button"
+                    onClick={() => setMsgs([])}
+                    className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-white/60 transition hover:bg-white/10 hover:text-white"
+                    aria-label="Close chat"
+                  >
+                    <X size={14} />
+                  </button>
+                )}
                 <button
                   type="button"
                   className="hidden h-8 w-8 shrink-0 items-center justify-center rounded-full text-white/60 transition hover:bg-white/5 hover:text-white sm:flex"
