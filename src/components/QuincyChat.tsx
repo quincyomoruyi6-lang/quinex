@@ -48,7 +48,7 @@ export function QuincyChat() {
       {open && (
         <div
           className="fixed inset-x-0 z-40 px-3 pointer-events-none sm:px-4"
-          style={{ bottom: "calc(env(safe-area-inset-bottom, 0px) + 5.25rem)" }}
+          style={{ bottom: "calc(max(0.75rem, env(safe-area-inset-bottom)) + 4.5rem)" }}
         >
           <div className="mx-auto w-full max-w-xl pointer-events-auto">
             <div
@@ -94,7 +94,7 @@ export function QuincyChat() {
       {/* pill input — pinned to bottom on all screens */}
       <div
         className="fixed inset-x-0 z-50 px-3 pt-2 sm:px-4"
-        style={{ bottom: 0, paddingBottom: "calc(env(safe-area-inset-bottom, 0px) + 0.75rem)" }}
+        style={{ bottom: 0, paddingBottom: "max(0.75rem, env(safe-area-inset-bottom))" }}
       >
         <div className="mx-auto w-full max-w-xl">
           <div className="relative">

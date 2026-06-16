@@ -38,7 +38,7 @@ const socials = [
 
 function Index() {
   return (
-    <main className="min-h-screen px-5 py-12 pb-40 md:py-16">
+    <main className="min-h-screen px-4 py-12 pb-40 md:py-16">
       <div className="mx-auto w-full max-w-2xl">
         {/* Header */}
         <header className="flex items-start justify-between gap-6">
@@ -47,14 +47,14 @@ function Index() {
             <div>
               <span className="tag">automation,web,pentest,python,n8n,linux</span>
             </div>
-            <p className="italic">
+            <p className="italic font-semibold">
               i <span className="not-italic font-medium">build</span> &amp; <span className="underline">break</span>
             </p>
             <p className="mono text-muted-foreground">@quinex_amd</p>
           </div>
           <div className="text-right shrink-0">
-            <p className="italic">remote</p>
-            <p className="italic text-muted-foreground">working worldwide</p>
+            <p className="italic font-normal">remote</p>
+            <p className="italic font-normal text-muted-foreground">working worldwide</p>
           </div>
         </header>
 
@@ -63,9 +63,9 @@ function Index() {
         <Section label="current">
           <p>
             junior web pentester &amp; automation engineer. i build automation tools with{" "}
-            <HoverPreview href="https://www.python.org" previewLabel="python.org" className="italic"><span>python</span></HoverPreview>{" "}
+            <HoverPreview href="https://www.python.org" previewLabel="python.org"><span>python</span></HoverPreview>{" "}
             and{" "}
-            <HoverPreview href="https://n8n.io" previewLabel="n8n.io" className="italic"><span>n8n</span></HoverPreview>, and i break web apps to understand their weak spots. training on{" "}
+            <HoverPreview href="https://n8n.io" previewLabel="n8n.io"><span>n8n</span></HoverPreview>, and i break web apps to understand their weak spots. training on{" "}
             <HoverPreview href="https://www.hackthebox.com" previewLabel="hack the box"><span>hack the box</span></HoverPreview>{" "}&amp;{" "}
             <HoverPreview href="https://portswigger.net/web-security" previewLabel="portswigger academy"><span>portswigger academy</span></HoverPreview>.
           </p>
@@ -82,7 +82,7 @@ function Index() {
             { name: "pentest notes engine", role: "markdown · bash · github", loc: "engagement writeups" },
           ].map((j) => (
             <p key={j.name}>
-              <span className="italic">{j.name}</span> ~ {j.role} [{j.loc}]
+              <span className="font-semibold">{j.name}</span> ~ {j.role} [{j.loc}]
             </p>
           ))}
         </Section>
@@ -96,7 +96,7 @@ function Index() {
           ].map((w) => (
             <div key={w.title} className="grid grid-cols-[8rem_1fr] gap-4">
               <span className="mono text-muted-foreground pt-1">{w.date}</span>
-              <span className="italic">{w.title}</span>
+              <span>{w.title}</span>
             </div>
           ))}
         </Section>
@@ -111,7 +111,7 @@ function Index() {
           ].map((b) => (
             <div key={b.title} className="border-t border-rule pt-4">
               <div className="flex items-baseline justify-between gap-4">
-                <HoverPreview href={b.href} previewLabel={b.title} className="italic"><span>{b.title}</span></HoverPreview>
+                <HoverPreview href={b.href} previewLabel={b.title} className="font-semibold"><span>{b.title}</span></HoverPreview>
                 <span className="mono text-muted-foreground">{b.label}</span>
               </div>
               <p className="mt-2 text-muted-foreground">{b.blurb}</p>
