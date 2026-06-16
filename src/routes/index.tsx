@@ -82,7 +82,7 @@ function Index() {
             { name: "pentest notes engine", role: "markdown · bash · github", loc: "engagement writeups" },
           ].map((j) => (
             <p key={j.name}>
-              <span className="italic">{j.name}</span> ~ {j.role} [{j.loc}]
+              <span className="font-semibold">{j.name}</span> ~ {j.role} [{j.loc}]
             </p>
           ))}
         </Section>
