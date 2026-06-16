@@ -38,7 +38,7 @@ const socials = [
 
 function Index() {
   return (
-    <main className="min-h-screen px-5 py-12 pb-40 md:py-16">
+    <main className="min-h-screen px-4 py-12 pb-40 md:py-16">
       <div className="mx-auto w-full max-w-2xl">
         {/* Header */}
         <header className="flex items-start justify-between gap-6">
@@ -47,14 +47,14 @@ function Index() {
             <div>
               <span className="tag">automation,web,pentest,python,n8n,linux</span>
             </div>
-            <p className="italic">
+            <p className="italic font-semibold">
               i <span className="not-italic font-medium">build</span> &amp; <span className="underline">break</span>
             </p>
             <p className="mono text-muted-foreground">@quinex_amd</p>
           </div>
           <div className="text-right shrink-0">
-            <p className="italic">remote</p>
-            <p className="italic text-muted-foreground">working worldwide</p>
+            <p className="italic font-normal">remote</p>
+            <p className="italic font-normal text-muted-foreground">working worldwide</p>
           </div>
         </header>
 
