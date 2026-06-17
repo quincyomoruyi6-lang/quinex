@@ -39,3 +39,14 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+      - name: Build project
+        run: |
+          bun run build
+          echo "Listing all files..."
+          ls -la
+          echo "Looking for .output..."
+          ls -la .output || echo "No .output folder"
+          echo "Looking for dist..."
+          ls -la dist || echo "No dist folder"
+          echo "Looking for build..."
+          ls -la build || echo "No build folder"
